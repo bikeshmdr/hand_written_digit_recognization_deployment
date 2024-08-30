@@ -16,9 +16,9 @@ def main():
     def preprocess_image(image):
         image = image.convert('L')  # Convert to grayscale
         image = image.resize((28, 28))  # Resize to 28x28
-        image = np.array(image)  # Convert to numpy array
+        image = np.array(image).astype('float32')  # Convert to numpy array and change type to float32
         image = image / 255.0  # Normalize to [0, 1]
-        image = image.reshape(1, 28, 28, 1)  # Reshape for model input
+        image = image.reshape(1, 28, 28, 1)  # Reshape for model input (batch size, height, width, channels)
         return image
 
     # Streamlit app layout
