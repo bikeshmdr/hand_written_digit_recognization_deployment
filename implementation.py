@@ -44,17 +44,12 @@ def main():
             image_data = canvas_result.image_data
             pil_image = Image.fromarray(image_data.astype(np.uint8))
 
-            # **Visualize the image on Streamlit**
-            st.write("Here's the image you drew:")
-            st.image(pil_image, caption='Your drawn digit', use_column_width=True)
-            
             # Preprocess the image
             preprocessed_image = preprocess_image(pil_image)
             
             # Make prediction
             try:
                 prediction = model.predict(preprocessed_image)
-                st.write(f"{prediction}")
                 predicted_class = np.argmax(prediction, axis=1)[0]
                 # Display the prediction
                 st.write(f'The model predicts: {predicted_class}')
