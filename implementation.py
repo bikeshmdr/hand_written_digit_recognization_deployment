@@ -4,9 +4,12 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 
-
 # Load your trained model
-model = load_model('LeNet.h5')
+@st.cache(allow_output_mutation=True)
+def load_trained_model():
+    return load_model('LeNet.h5')
+
+model = load_trained_model()
 
 def main():
     # Define a function to preprocess the drawn image
@@ -15,7 +18,7 @@ def main():
         image = image.resize((28, 28))  # Resize to 28x28
         image = np.array(image)  # Convert to numpy array
         image = image / 255.0  # Normalize to [0, 1]
-        image = image.reshape(1, 28, 28)  # Reshape for model input
+        image = image.reshape(1, 28, 28, 1)  # Reshape for model input
         return image
 
     # Streamlit app layout
@@ -45,10 +48,13 @@ def main():
             preprocessed_image = preprocess_image(pil_image)
             
             # Make prediction
-            prediction = model.predict(preprocessed_image)
-            predicted_class = np.argmax(prediction, axis=1)[0]
-            # Display the prediction
-            st.write(f'The model predicts: {predicted_class}')
+            try:
+                prediction = model.predict(preprocessed_image)
+                predicted_class = np.argmax(prediction, axis=1)[0]
+                # Display the prediction
+                st.write(f'The model predicts: {predicted_class}')
+            except Exception as e:
+                st.error(f"An error occurred during prediction: {e}")
         else:
             st.write('Please draw a digit first.')
 
