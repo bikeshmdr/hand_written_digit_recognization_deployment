@@ -53,6 +53,7 @@ def main():
             
             # Make prediction
             try:
+                st.write(f"shape;{preprocessed_image.shape}" )
                 prediction = model.predict(preprocessed_image)
                 predicted_class = np.argmax(prediction, axis=1)[0]
                 # Display the prediction
