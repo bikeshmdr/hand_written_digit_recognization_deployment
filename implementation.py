@@ -5,7 +5,7 @@ from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 
 # Load your trained model
-@st.cache(allow_output_mutation=True)
+
 def load_trained_model():
     return load_model('LeNet.h5')
 
@@ -30,7 +30,7 @@ def main():
         fill_color='black',
         width=280,
         height=280,
-        stroke_width=10,
+        stroke_width=30,
         stroke_color='white',
         background_color='black',
         update_streamlit=True,
