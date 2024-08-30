@@ -54,6 +54,7 @@ def main():
             # Make prediction
             try:
                 st.write(f"shape;{preprocessed_image.shape}" )
+                st.write(f"Value range of the sample: {np.min(preprocessed_image)} to {np.max(preprocessed_image)}")
                 prediction = model.predict(preprocessed_image)
                 predicted_class = np.argmax(prediction, axis=1)[0]
                 # Display the prediction
