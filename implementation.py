@@ -27,12 +27,12 @@ def main():
 
     # Create a blank canvas
     canvas_result = st_canvas(
-        fill_color='white',
+        fill_color='black',
         width=280,
         height=280,
         stroke_width=10,
-        stroke_color='black',
-        background_color='white',
+        stroke_color='white',
+        background_color='black',
         update_streamlit=True,
         key='canvas'
     )
