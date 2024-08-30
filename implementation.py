@@ -42,10 +42,11 @@ def main():
         if canvas_result.image_data is not None:
             # Convert canvas image data to PIL Image
             image_data = canvas_result.image_data
-            
+            pil_image = Image.fromarray(image_data.astype(np.uint8))
+
             # **Visualize the image on Streamlit**
             st.write("Here's the image you drew:")
-            st.image(image_data, caption='Your drawn digit', use_column_width=True)
+            st.image(pil_image, caption='Your drawn digit', use_column_width=True)
             
             # Preprocess the image
             preprocessed_image = preprocess_image(image_data)
