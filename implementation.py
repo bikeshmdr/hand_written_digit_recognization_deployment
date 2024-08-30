@@ -49,7 +49,7 @@ def main():
             st.image(pil_image, caption='Your drawn digit', use_column_width=True)
             
             # Preprocess the image
-            preprocessed_image = preprocess_image(image_data)
+            preprocessed_image = preprocess_image(pil_image)
             
             # Make prediction
             try:
