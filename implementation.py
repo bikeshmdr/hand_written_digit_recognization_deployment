@@ -4,12 +4,9 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 
-# Load your trained model
-
-def load_trained_model():
-    return load_model('LeNet.h5')
-
-model = load_trained_model()
+# Load trained model
+model = load_model('LeNet.h5')
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 def main():
     # Define a function to preprocess the drawn image
