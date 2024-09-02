@@ -1,11 +1,21 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # To reduce TensorFlow logging
+
+
 import streamlit as st
 import numpy as np
-from tensorflow.keras.models import load_model
+import tensorflow as tf
+from keras.models import load_model
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 
-# Load trained model
-model = load_model('LeNet.h5', compile = "False")
+
+
+# Load the model
+try:
+    model = load_model('LeNet.h5', compile=False)
+except Exception as e:
+    st.error(f"Failed to load the model: {e}")
 #model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 def main():
